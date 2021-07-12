@@ -1,0 +1,35 @@
+form legend 
+{
+    font-size: 16px;
+}
+
+td div 
+{
+    margin-left: 10px;
+}
+
+.border-left-1 {
+    border-left: solid 1px gainsboro !important;
+}
+
+#approval-buttons
+{
+    padding: 20px;
+}
+
+#details-logo
+{
+    width: 150px;
+}
+
+#details-top h2
+{
+    font-size: 24px !important;
+}
+
+#table-approver 
+{
+    width: 100%;
+}
+
+ 

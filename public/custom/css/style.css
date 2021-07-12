@@ -1,0 +1,273 @@
+ body{
+     background-color: gainsboro;
+ }
+ /* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+.navbar-header {
+    padding: 0px !important;
+  }
+
+  .navbar-header .navbar-toggle i
+  {
+      color: black !important;
+      margin-top: 10px;
+  }
+
+#content
+{
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+ .atp-logo
+{
+    width: 160px;
+    margin-left: 25px;
+}
+ .navbar-brands span
+ {
+     font-weight: bold;
+     font-size:18px;
+ }
+
+
+.sidebar-header
+{
+    height: 61px;
+    position: relative;
+    background-color: #FF9800;
+}
+#sidebarCollapse
+{
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.title
+{
+    margin-left: 10px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 24;
+    text-transform: uppercase;
+    color: white;
+}
+.user-info
+{
+    height: 50px;
+    position: relative;
+}
+.user-icon
+{
+    text-align: center;
+    width: 30px;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.user-details
+{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-left: 30px;
+}
+
+.user-details .position
+{
+    font-size: 12px;
+    color: grey;
+}
+
+ .pages-title
+ {
+     background-color: #e1e1e1;
+     font-size: 12px;
+     color: #3c3c3c;
+     padding: 5px 20px 5px 5px;
+ }
+ .components li .material-icons
+ {
+     font-size: 16px;
+ }
+
+ #sidebar .components li:hover{
+    color: #FF9800;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#sidebar .components li.active{
+    color: #FF9800;
+    background-color: white !important;
+    border: solid 1px #ddd;
+    font-weight: bold;
+}
+
+#comment-notif-list li
+{
+    width: 350px !important;
+}
+.navbar-right .label-count
+{
+    background-color:#FF9800;
+    color: white;
+}
+
+
+#comment-notif .dropdown-menu
+{
+   list-style: none !important;
+}
+
+ @media only screen and (max-width: 600px) {
+    .navbar-brands span
+    {
+        display: none;
+    }
+ }
+ .content
+ {
+    padding: 20px;
+ }
+ .body-content
+ {
+     padding: 20px;
+     margin-top: 70px;
+ }
+ .card
+ {
+     padding: 10px;
+ }
+ #recordTable_filter
+{
+    display:none !important;
+}
+.color-def{
+    color:white !important;
+}
+.approved-1 {
+    background-color: #FFCE54 !important;
+}
+
+.approved-2 {
+    background-color: #AC92EB !important;
+}
+
+.approved-3 {
+    background-color: #4FC1E8 !important;
+}
+
+.approved-4 {
+    background-color: #A0D568 !important;
+}
+
+.approved-5 {
+    background-color: #a1b78a !important;
+}
+
+.approved-6 {
+    background-color: #3a6809 !important;
+}
+
+.approved--6 {
+    background-color: #ed5564 !important;
+}
+
+#recordTable
+{
+    width: 100% !important;
+}
+
+.approval-table td:first-child
+{
+    width: 10px !important;
+}
+
+.approval-table .selected
+{
+    background-color: white !important;
+    color: black !important;
+}
+
+label.text-warning
+{
+    color:#FF9800 !important;
+    text-transform: uppercase;
+}
+
+.modal-title
+{
+    margin-top: -20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+label.required:after {
+    color: #F44336;
+    content: " *";
+}
+
+.centered {
+    margin-left: -10%;
+  }
+
+
+
+  .buttonsnap {
+    background-color: #d11313;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius:55%;
+    border-color: #ffffff;
+    border: 5px solid;
+    margin-left: 40%;
+    margin-top: 20%;
+  }
+
+  @media screen and (max-width: 800px) {
+    .foot{
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .selfieOpt {
+      display: none;
+    }
+  }
+
+
+  .form-group .form-control {
+    border: 1px solid #dddddd !important;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .focusedRow
+{
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #EEE;
+    color: #111;
+}
+
+
