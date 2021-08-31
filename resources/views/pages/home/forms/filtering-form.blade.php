@@ -1,12 +1,13 @@
 
             <form id="FilteringForm" method="get" action="{{ URL::to('/home')}}" class="keepFormData">
                 <input type="hidden" name="_token" id="tokenfield" value="{{csrf_token()}}" />
+                <input type="hidden" name="posID" id ="posID" value="{{ MyHelper::decrypt(Session::get('PositionLevel_ID')) }}"
                 <div class="row clearfix">
                 <div class="col-sm-2">
                     <label for="dateFrom">Date Start</label>
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="date" value="{{$paramCheckInOut['dateFrom']}}"  id="dateFrom" name="dateFrom" class="form-control" />
+                            <input type="date" value="{{$paramCheckInOut['dateFrom']}}"  id="dateFrom" name="dateFrom" class="form-control df" />
                         </div>
                     </div>
                 </div>
@@ -14,7 +15,7 @@
                     <label for="dateTo">Date End</label>
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="date" value="{{$paramCheckInOut['dateTo']}}" id="dateTo" name="dateTo" class="form-control" />
+                            <input type="date" value="{{$paramCheckInOut['dateTo']}}" id="dateTo" name="dateTo" class="form-control df" />
                         </div>
                     </div>
                 </div>
@@ -36,7 +37,11 @@
                     <div class="form-group">
                         <div class="form-line">
                             <select id="employeeID" name="employeeID" class="form-control">
+                                @if(MyHelper::decrypt(Session::get('PositionLevel_ID')) < 5)
+                                <option value ="0">ALL</option>
+                                @else
                                 <option value="{{ $user }}">{{ $userName }}</option>
+                                @endif
                                 @foreach($employees as $employee)
                                     <option value="{{$employee->Employee_ID}}" {{ $paramCheckInOut['employeeID'] == $employee->Employee_ID ? ' selected ':''}}>{{$employee->FullName}}</option>
                                 @endforeach

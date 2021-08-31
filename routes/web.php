@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Session;
  */
 Route::any('/','AuthController@index');
 Route::get('/logout','AuthController@logout');
+Route::post('/pin-check','AuthController@getUserPIN');
+
 
 /**
  * Page Controller
@@ -54,6 +56,7 @@ Route::post('/approve','ApprovalController@approve');
 
 Route::get('/dc-get','OptionsController@getDC');
 Route::post('/stores-get','OptionsController@getStore');
+Route::post('/emp-get','OptionsController@getEmployeeList');
 
 
 /**

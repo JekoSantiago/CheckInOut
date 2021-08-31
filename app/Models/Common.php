@@ -65,11 +65,17 @@ class Common extends Model
      * Get Employee List Approval
      */
 
-     public static function getUnder()
+     public static function getUnder($data)
      {
+        // dd($data);
+        $result = DB::select('sp_EmployeeList_Get ?,?,?', $data);
+        return $result;
+    }
 
+    public static function getUnderApproval()
+    {
         return DB::select('select Employee_ID,EmployeeNo,FullName,Email from ATPI_HR.dbo.vwEmpPosition  where SuperiorEmp_ID = ?', [MyHelper::decrypt(Session::get('Employee_ID'))]);
-     }
+    }
 
 
      /**
@@ -106,15 +112,12 @@ class Common extends Model
     {
         return DB::select('ATPI_HR.dbo.sp_StorePerDC_Get ?',[$data]);
     }
+
+    public static function getUserPIN($data)
+    {
+        return DB::select('sp_EmpPIN_GET ?' , $data);
+    }
 }
 
 
-/* End of file Common.php
- * Location: app/Models/Common.php
- *
- * Author: Melvin A. De Asis
- * Created Date: Oct. 08, 2020
- * Last Update:
- * Project Name : PRF - Personnel Requisition Form
- *
- */
+

@@ -64,72 +64,111 @@ $('document').ready(function () {
         var Type = data['LogType'];
         var Status = 1;
         var LocationName =  data['Location'];
+        var FullName = data['FullName']
 
         var s1 = "Approving the "
         var s2  = (Mode == 3) ? "Selfie" : "Manual Log"
         var title = s1.concat(s2);
         swal({
-            title: title ,
-            text: data['FullName'],
+            title: "Enter your PIN" ,
             icon: "warning",
             content: {
                 element: "input",
                 attributes: {
-                  placeholder: "Input Remarks",
+                  placeholder: "****",
+                  type: "password"
                 }},
             button: {
                     text: "Submit",
                     closeModal: false,
                   },
             dangerMode: true,
-          }).then((remarks) => {
-            if (remarks)
+          }).then((PIN) => {
+            if (PIN)
             {
-                $.ajax({
-                    url:WebURL+'/approve',
-                        type:'POST',
-                        data:{ID,Employee,Location,Mode,LogTime,Type,remarks,Status},
-                        dataType: 'json',
-                        cache: false,
-                        success: function (data) {
-                            if(data.num>=0)
+                $.post(WebURL + '/pin-check',{PIN:PIN},function(data){
+                    if(data == 1)
+                    {
+                        swal({
+                            title: title ,
+                            text: FullName,
+                            icon: "warning",
+                            content: {
+                                element: "input",
+                                attributes: {
+                                  placeholder: "Input Remarks",
+                                }},
+                            button: {
+                                    text: "Submit",
+                                    closeModal: false,
+                            },
+                            dangerMode: true,
+                        }).then((remarks) => {
+                            if (remarks)
                             {
-                                $.post(WebURL + '/approve-email',{Employee:Employee,Mode:Mode,Type:Type,LocationName:LocationName,remarks:remarks,LogTime:LogTime,Status:Status})
-                                swal({
-                                    title: data.msg,
-                                    text: " ",
-                                    icon: "success",
-                                    timer: 3000,
-                                    buttons: false
-                                  });
-                                console.log('success');
-                                tbl_approval.ajax.reload();
-                            }
+                                $.ajax({
+                                    url:WebURL+'/approve',
+                                        type:'POST',
+                                        data:{ID,Employee,Location,Mode,LogTime,Type,remarks,Status},
+                                        dataType: 'json',
+                                        cache: false,
+                                        success: function (data) {
+                                            if(data.num>=0)
+                                            {
+                                                swal({
+                                                    title: data.msg,
+                                                    icon: "success",
+                                                    text: " ",
+                                                    timer: 3000,
+                                                    buttons: false
+                                                  });
+                                                console.log('success');
+                                                tbl_approval.ajax.reload();
+                                            }
 
+                                            else
+                                            {
+                                                swal({
+                                                    title: 'Warning!',
+                                                    text: data.msg,
+                                                    icon: "warning",
+                                                  });
+                                                 console.log('warning');
+
+                                            }
+
+
+                                        },
+                                        error: function () {
+                                            console.log('error');
+                                        }
+                                })
+                            }
                             else
                             {
-                                swal({
-                                    title: 'Warning!',
-                                    text: data.msg,
-                                    icon: "warning",
-                                  });
-                                 console.log('warning');
-
+                                swal("Warning!", "Please input a remark", "warning");
                             }
+                        })
+                    }
+                    else
+                    {
+                        swal({
+                            title: "Warning!",
+                            text: "Wrong PIN",
+                            icon: "warning",
+                            confirmButtonText: "Ok",
+                            confirmButtonColor: '#3085d6',
+                            allowOutsideClick: false,
+                        });
+                    }
 
-
-                        },
-                        error: function () {
-                            console.log('error');
-                        }
                 })
             }
             else
             {
-                swal("Warning!", "Please input a remark", "warning");
+                swal("Warning!", "Please input pin", "warning");
             }
         })
-            ;
     })
 
     $('body').on('click','.decline',function(e){
@@ -141,72 +180,112 @@ $('document').ready(function () {
         var Mode = data['ModeTypeID'];
         var LogTime = data['Date'] + ' ' + data['Time'];
         var Type = data['LogType'];
+        var FullName = data['FullName'];
         var Status = 2;
 
         var s1 = "Declining the "
         var s2  = (Mode == 3) ? "Selfie" : "Manual Log"
         var title = s1.concat(s2);
         swal({
-            title: title ,
-            text: data['FullName'],
+            title: "Enter your PIN" ,
             icon: "warning",
             content: {
                 element: "input",
                 attributes: {
-                  placeholder: "Input Remarks",
+                  placeholder: "****",
+                  type: "password"
                 }},
             button: {
                     text: "Submit",
                     closeModal: false,
-            },
+                  },
             dangerMode: true,
-        }).then((remarks) => {
-            if (remarks)
+          }).then((PIN) => {
+            if (PIN)
             {
-                $.ajax({
-                    url:WebURL+'/approve',
-                        type:'POST',
-                        data:{ID,Employee,Location,Mode,LogTime,Type,remarks,Status},
-                        dataType: 'json',
-                        cache: false,
-                        success: function (data) {
-                            if(data.num>=0)
+                $.post(WebURL + '/pin-check',{PIN:PIN},function(data){
+                    if(data == 1)
+                    {
+                        swal({
+                            title: title ,
+                            text: FullName,
+                            icon: "warning",
+                            content: {
+                                element: "input",
+                                attributes: {
+                                  placeholder: "Input Remarks",
+                                }},
+                            button: {
+                                    text: "Submit",
+                                    closeModal: false,
+                            },
+                            dangerMode: true,
+                        }).then((remarks) => {
+                            if (remarks)
                             {
-                                swal({
-                                    title: data.msg,
-                                    icon: "success",
-                                    text: " ",
-                                    timer: 3000,
-                                    buttons: false
-                                  });
-                                console.log('success');
-                                tbl_approval.ajax.reload();
-                            }
+                                $.ajax({
+                                    url:WebURL+'/approve',
+                                        type:'POST',
+                                        data:{ID,Employee,Location,Mode,LogTime,Type,remarks,Status},
+                                        dataType: 'json',
+                                        cache: false,
+                                        success: function (data) {
+                                            if(data.num>=0)
+                                            {
+                                                swal({
+                                                    title: data.msg,
+                                                    icon: "success",
+                                                    text: " ",
+                                                    timer: 3000,
+                                                    buttons: false
+                                                  });
+                                                console.log('success');
+                                                tbl_approval.ajax.reload();
+                                            }
 
+                                            else
+                                            {
+                                                swal({
+                                                    title: 'Warning!',
+                                                    text: data.msg,
+                                                    icon: "warning",
+                                                  });
+                                                 console.log('warning');
+
+                                            }
+
+
+                                        },
+                                        error: function () {
+                                            console.log('error');
+                                        }
+                                })
+                            }
                             else
                             {
-                                swal({
-                                    title: 'Warning!',
-                                    text: data.msg,
-                                    icon: "warning",
-                                  });
-                                 console.log('warning');
-
+                                swal("Warning!", "Please input a remark", "warning");
                             }
+                        })
+                    }
+                    else
+                    {
+                        swal({
+                            title: "Warning!",
+                            text: "Wrong PIN",
+                            icon: "warning",
+                            confirmButtonText: "Ok",
+                            confirmButtonColor: '#3085d6',
+                            allowOutsideClick: false,
+                        });
+                    }
 
-
-                        },
-                        error: function () {
-                            console.log('error');
-                        }
                 })
             }
             else
             {
-                swal("Warning!", "Please input a remark", "warning");
+                swal("Warning!", "Please input pin", "warning");
             }
         })
-            ;
     })
 
 

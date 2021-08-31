@@ -56,7 +56,7 @@ class PageController extends Controller
 
         $data['checkInOuts'] = Monitoring::getCheckInOut($paramCheckInOut);
         // dd($paramCheckInOut);
-        $data['employees']          = Common::getUnder();
+        $data['employees']          = Common::getUnder([$userEmpID,$request->input('dateFrom') ? : date('Y-m-d'),$request->input('dateTo') ? : date('Y-m-d')]);
         $data['locations']          = Common::getLocation($paramsLocation);
         $data['positions']          = Common::getPosition($paramsPosition);
         return view('pages.home.index', $data);
@@ -118,7 +118,7 @@ class PageController extends Controller
         $paramCheckInOut['employeeID']    =  $request->input('employeeID') ? : 0;
         $paramCheckInOut['status']        =  $request->input('isApproved') ? : 0;
         $data['paramCheckInOut'] = $paramCheckInOut;
-        $data['employees']          = Common::getUnder();
+        $data['employees']          = Common::getUnderApproval();
         $data['title'] = "CHECK IN & OUT | Approval";
 
         return view('pages.approval.index', $data);

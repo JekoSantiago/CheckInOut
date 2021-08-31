@@ -5,6 +5,7 @@ $("document").ready(function () {
         processing: true,
         serverSide: true,
         scrollX: true,
+        order: [[ 2, "asc" ]],
         ajax      : {
             url: WebURL + '/monitoring',
             method: 'POST',
@@ -53,4 +54,31 @@ $("document").ready(function () {
             emptyTable: 'No data available.',
         },
     });
+
+    $(".df").on('change',function(){
+        var token = $('#globalToken').val()
+        var dateFrom = $('#dateFrom').val();
+        var dateTo = $('#dateTo').val();
+        var posLvl = $('#posID').val();
+
+        if(posLvl < 5)
+        {
+            $.ajax({
+                url:WebURL+'/emp-get',
+                    type:'POST',
+                    data:{token,dateFrom,dateTo},
+                    dataType: 'text',
+                    cache: false,
+                    success: function (data) {
+                        // console.log(data);
+                        $('#employeeID').html(data);
+                    },
+                    error: function () {
+                        console.log('error');
+                    }
+            })
+        }
+        });
+
+
 });

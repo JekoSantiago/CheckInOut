@@ -94,4 +94,26 @@ class AuthController extends Controller
         Session::flush();
         return  redirect(env('MYHUB_URL').'/?/logout');
     }
+
+    public function getUserPIN(Request $request)
+    {
+        $userID =  MyHelper::decrypt(Session::get('Employee_ID'));
+        $empNo = MyHelper::decrypt(Session::get('EmployeeNo'));
+        $res = Common::getUserPIN([$userID]);
+        $pin = $res[0]->PIN;
+
+        $rqPIN = $request -> PIN;
+
+        $vPIN = MyHelper::passwordEncrypt($empNo,$rqPIN);
+
+        if($vPIN == $pin)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
 }
